@@ -27,3 +27,11 @@ Make sure to activate the environment before running the script:
 ```
 conda activate cannyio
 ```
+
+## Run the script
+
+Execute the script with the following Python command:
+
+```
+$ python return-users.py
+```

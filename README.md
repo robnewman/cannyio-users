@@ -13,6 +13,7 @@ Contact <rob.newman@seqera.io> for the API key.
 
 - The Canny Users API endpoint allows a maximum of 100 records returned (you can optionally define a `skip` value to skip N records).
 - The Python script currently naively assumes a maximum of 1000 users (hardcoded) and iterates in blocks of 100.
+- There is a working Slackbot integration with the auth token stored in the `.env` file
 
 ## Virtual environment
 

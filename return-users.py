@@ -6,10 +6,10 @@ secrets = dotenv_values(".env")
 
 def loop_canny_users():
     increment = 100 # Canny API caps increment at 100
-    missing_users = [] 
-    message ="Seqera Canny.io users with no Company affiliation:\n"
+    missing_users = []
+    message ="Canny.io users with no Company affiliation:\n"
     # Naively assume a max of 1000 users
-    for i in range(0, 1000, increment): 
+    for i in range(0, 1000, increment):
         users = get_canny_users(secrets["API_KEY"], increment, i)
         if users:
             for user in users:
@@ -26,7 +26,7 @@ def loop_canny_users():
             username = "Bot User"
         )
     else:
-        print("No Seqera Canny users missing a Company affiliation")
+        print("No Canny users missing a Company affiliation")
 
 def get_canny_users(api_key, limit, skip):
     payload = {

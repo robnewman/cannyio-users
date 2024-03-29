@@ -4,10 +4,11 @@ Utility to query the Canny Users API endpoint
 
 ## Overview
 
-Simple Python script to query the [Canny.io API Users endpoint](https://developers.canny.io/api-reference#users) and return all users that do not have a Company affiliation.
+Simple Python script to query the [Canny.io API Users
+endpoint](https://developers.canny.io/api-reference#users) and
+return all users that do not have a Company affiliation.
 
-The Seqera Canny API key is stored in a `.env` file and is not part of this repository.
-Contact <rob.newman@seqera.io> for the API key.
+The Canny API key is stored in a `.env` file and is not part of this repository.
 
 ## Assumptions
 
@@ -17,7 +18,8 @@ Contact <rob.newman@seqera.io> for the API key.
 
 ## Virtual environment
 
-This script uses a virtual environment called `cannyio`. Use Conda to recreate the environment on your localhost:
+This script uses a virtual environment called `cannyio`. Use Conda
+to recreate the environment on your localhost:
 
 ```
 conda env create -f environment.yml

@@ -10,7 +10,11 @@ Simple Python script to query the [Canny.io API Users
 endpoint](https://developers.canny.io/api-reference#users) and
 return all users that do not have a Company affiliation.
 
-The Canny API key is stored in a `.env` file and is not part of this repository.
+The following environment variables are stored in a `.env` file and not part of this repository:
+
+- Canny API key
+- Slack OAuth token
+- Slack channel name
 
 ## Assumptions
 

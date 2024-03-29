@@ -15,6 +15,16 @@ The following environment variables are stored in a `.env` file and not part of 
 - Canny API key
 - Slack OAuth token
 - Slack channel name
+- Total users
+
+The `.env` file contents (in same directory as Python script):
+
+```sh
+API_KEY=<canny-api-key>
+SLACKBOT_OAUTH_TOKEN=<slack-oauth-token>
+SLACK_CHANNEL=<slack-channel-name>
+TOTAL_USERS=<total-users-integer>
+```
 
 ## Assumptions
 

@@ -21,7 +21,7 @@ def loop_canny_users():
     if len(missing_users) > 0:
         client = WebClient(token=secrets["SLACKBOT_OAUTH_TOKEN"])
         client.chat_postMessage(
-            channel = "proj-canny-launch",
+            channel = secrets["SLACK_CHANNEL"],
             text = message + joined_users,
             username = "Bot User"
         )

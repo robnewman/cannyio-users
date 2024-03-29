@@ -1,6 +1,8 @@
 # cannyio-users
 
-Utility to query the Canny Users API endpoint
+Utility to query the Canny Users API endpoint and return all users
+without a Company affiliation. Then send a Slack notification with
+the list of users.
 
 ## Overview
 

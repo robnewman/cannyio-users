@@ -9,7 +9,7 @@ def loop_canny_users():
     missing_users = []
     message ="Canny.io users with no Company affiliation:\n"
     # Naively assume a max of 1000 users
-    for i in range(0, secrets["TOTAL_USERS"], increment):
+    for i in range(0, int(secrets["TOTAL_USERS"]), increment):
         users = get_canny_users(secrets["API_KEY"], increment, i)
         if users:
             for user in users:

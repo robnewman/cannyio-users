@@ -34,7 +34,7 @@ def get_canny_users(api_key, limit, skip):
         "limit": {limit},
         "skip": {skip}
     }
-    url = "https://canny.io/api/v1/users/list"
+    url = "https://canny.io/api/v2/users/list"
     try:
         response = requests.post(url, params=payload)
         response.raise_for_status()  # Check for errors

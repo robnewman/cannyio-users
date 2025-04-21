@@ -4,19 +4,18 @@ from slack_sdk import WebClient
 
 secrets = dotenv_values(".env")
 
-def loop_canny_users():
+def missing_company_users():
     increment = 100 # Canny API caps increment at 100
     missing_users = []
     message ="Canny.io users with no Company affiliation:\n"
-    # Naively assume a max of 1000 users
-    for i in range(0, int(secrets["TOTAL_USERS"]), increment):
-        users = get_canny_users(secrets["API_KEY"], increment, i)
-        if users:
-            for user in users:
-                if len(user['companies']) == 0:
-                    missing_users.append(f"- Name: {user['name']}, Email: {user['email']}")
-
-    joined_users = '\n'.join(missing_users)
+    users = get_canny_users(secrets["API_KEY"])
+    if users:
+        for user in users:
+            if len(user['companies']) == 0:
+                missing_users.append(f"- Name: {user['name']}, Email: {user['email']}")
+        # Clean duplicate entries
+        missing_users = list(set(missing_users))
+        joined_users = '\n'.join(missing_users)
 
     if len(missing_users) > 0:
         client = WebClient(token=secrets["SLACKBOT_OAUTH_TOKEN"])
@@ -28,21 +27,37 @@ def loop_canny_users():
     else:
         print("No Canny users missing a Company affiliation")
 
-def get_canny_users(api_key, limit, skip):
-    payload = {
-        "apiKey": {api_key},
-        "limit": {limit},
-        "skip": {skip}
-    }
+def get_canny_users(api_key):
+    """
+    Fetch all users from Canny using cursor-based pagination
+
+    Args:
+        api_key (str): Canny API key
+
+    Returns:
+        list: A list of all user dictionaries
+    """
     url = "https://canny.io/api/v2/users/list"
-    try:
+    all_users = []
+    cursor = None
+
+    while True:
+        payload = {
+            "apiKey" : api_key
+        }
+        if cursor:
+            payload['cursor'] = cursor
+
         response = requests.post(url, params=payload)
         response.raise_for_status()  # Check for errors
-        users = response.json()
-        return users
-    except requests.exceptions.RequestException as e:
-        print(f"Error: {e}")
-        return None
+        data = response.json()
+        users = data.get('users', [])
+        all_users.extend(users)
+        cursor = data.get('cursor')
+        if not cursor:
+            break
+
+    return all_users
 
 if __name__ == "__main__":
-    loop_canny_users()
+    missing_company_users()

@@ -5,7 +5,6 @@ from slack_sdk import WebClient
 secrets = dotenv_values(".env")
 
 def missing_company_users():
-    increment = 100 # Canny API caps increment at 100
     missing_users = []
     message ="Canny.io users with no Company affiliation:\n"
     users = get_canny_users(secrets["API_KEY"])

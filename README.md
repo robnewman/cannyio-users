@@ -15,7 +15,6 @@ The following environment variables are stored in a `.env` file and not part of 
 - Canny API key
 - Slack OAuth token
 - Slack channel name
-- Total users
 
 The `.env` file contents (in same directory as Python script):
 
@@ -23,13 +22,11 @@ The `.env` file contents (in same directory as Python script):
 API_KEY=<canny-api-key>
 SLACKBOT_OAUTH_TOKEN=<slack-oauth-token>
 SLACK_CHANNEL=<slack-channel-name>
-TOTAL_USERS=<total-users-integer>
 ```
 
 ## Assumptions
 
-- The Canny Users API endpoint allows a maximum of 100 records returned (you can optionally define a `skip` value to skip N records).
-- The Python script currently naively assumes a maximum of `TOTAL_USERS` and iterates in blocks of 100.
+- The Canny Users API endpoint has recently been updated (to v2) and now allows the use of a cursor to iterate through paginated responses.
 - There is a working Slackbot integration with the auth token stored in the `.env` file
 
 ## Virtual environment
